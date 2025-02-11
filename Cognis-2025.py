@@ -518,7 +518,12 @@ class StimulusWindow(QWidget):
 
     def initUI(self):
         self.setWindowTitle("Estímulo")
-        self.showFullScreen()  # Abrir em tela cheia para evitar problemas de escala
+        self.setWindowFlag(Qt.WindowMinimizeButtonHint, True)  # Permite minimizar
+        self.setWindowFlag(Qt.WindowStaysOnTopHint, False)  # Remove a obrigatoriedade de estar sempre em primeiro plano
+        self.setWindowFlag(Qt.Window, True)  # Garante que a janela pode ser movida
+        self.setGeometry(100, 100, 800, 600)  # Define um tamanho padrão inicial
+        self.showMaximized()  # Abre maximizado, mas ainda permite minimizar e mover
+
 
         self.timer = QTimer(self)
         self.timer.timeout.connect(self.show_next_stimulus)
